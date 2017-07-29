@@ -4,18 +4,21 @@
  */
 
 function ClozeCard(text, cloze) {
-    this.cloze = cloze;
-    this.partial = removeCloze(text, cloze);
-    this.fullText = text;
-}
+    this.removeCloze = function() {
+        console.log(cloze);
+        if (text.indexOf(cloze) !== -1) {
+            return text.replace(cloze, '...');
+        } else {
+            return;
+        }
+    }
 
-//Cloze.prototype.removeCloze = function(text, cloze) {
-var removeCloze = function(text, cloze) {
-    console.log(cloze);
-    if (text.indexOf(cloze) > -1) {
-        return text.replace(cloze, '...');
+    if (text.indexOf(cloze) !== -1) {
+        this.cloze = cloze;
+        this.partial = this.removeCloze();
+        this.fullText = text;
     } else {
-        return;
+        console.log('ERROR: \"%s\" does not appear in \"%s\"', cloze, text);
     }
 }
 
